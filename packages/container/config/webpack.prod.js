@@ -10,11 +10,16 @@ const prodConfig = {
   output: {
     filename: "[name].[contenthash].js",
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: "container",
       remotes: {
-        marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+        // marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+        marketing: `marketing@http://localhost:8081/remoteEntry.js`,
+        // marketing: `marketing@http://mfc-container.website.yandexcloud.net/dist/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
