@@ -1,8 +1,8 @@
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({onSignedIn}) => {
   const ref = useRef(null);
   // Копия Browser History
   const history = useHistory()
@@ -19,6 +19,9 @@ export default () => {
         if (pathname !== nextPathname) {
           history.push(nextPathname);
         }
+      },
+      onSignIn: () => {
+        onSignedIn(true);
       }
     });
 
